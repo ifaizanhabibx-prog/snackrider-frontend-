@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:5000/api/auth";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const USER_KEY = "snackrider_user";
 const TOKEN_KEY = "snackrider_token";
@@ -18,7 +18,7 @@ export function clearSavedUser() {
 }
 
 export async function registerUser(name, email, password) {
-  const response = await fetch(`${API_URL}/register`, {
+  const response = await fetch(`${API_URL}/api/auth/register`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -37,9 +37,8 @@ export async function registerUser(name, email, password) {
   return data.user;
 }
 
-
 export async function loginUser(email, password) {
-  const response = await fetch(`${API_URL}/login`, {
+  const response = await fetch(`${API_URL}/api/auth/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
